@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+else
+  cd /opt
+  git clone https://github.com/Itseez/opencv.git
+  git clone https://github.com/Itseez/opencv_contrib.git
+  cd opencv
+  mkdir release
+  cd release
+  cmake .
+  make
+  make install
+  ldconfig
+  exit
+fi
